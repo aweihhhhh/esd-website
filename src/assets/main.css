@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global base styles */
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reusable component classes */
+@layer components {
+  .container-x { @apply max-w-8xl mx-auto px-4 md:px-6 lg:px-8; }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md
+           font-semibold text-sm transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-600
+           focus:ring-brand;
+  }
+  .btn-accent {
+    @apply btn bg-accent text-white hover:bg-accent-hover
+           focus:ring-accent;
+  }
+  .btn-outline {
+    @apply btn border border-brand text-brand hover:bg-brand hover:text-white
+           focus:ring-brand;
+  }
+  .btn-ghost {
+    @apply btn text-brand hover:bg-brand-50 focus:ring-brand;
+  }
+
+  .card {
+    @apply bg-white border border-gray-200 rounded-lg
+           transition-all duration-200;
+  }
+  .card-hover {
+    @apply card hover:border-brand-300 hover:shadow-md;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold text-brand-500;
+  }
+  .section-sub {
+    @apply mt-2 text-gray-500 text-sm md:text-base;
+  }
+
+  .pill {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+  }
+  .pill-blue   { @apply pill bg-brand-50 text-brand-500; }
+  .pill-green  { @apply pill bg-emerald-50 text-emerald-700; }
+  .pill-amber  { @apply pill bg-amber-50 text-amber-700; }
+  .pill-purple { @apply pill bg-purple-50 text-purple-700; }
+
+  .table-zebra tbody tr:nth-child(odd) { @apply bg-gray-50; }
+}
+
+/* Element Plus color overrides - keep brand consistent */
+.el-button--primary {
+  --el-button-bg-color: #0F3460;
+  --el-button-border-color: #0F3460;
+  --el-button-hover-bg-color: #0C2A4D;
+  --el-button-hover-border-color: #0C2A4D;
+  --el-button-active-bg-color: #091F3A;
+  --el-button-active-border-color: #091F3A;
+}
+
+/* Selection */
+::selection { background: #0F3460; color: #fff; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
