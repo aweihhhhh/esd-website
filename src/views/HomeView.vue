@@ -1,37 +1,7 @@
 <template>
   <div>
-    <!-- Hero -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-brand-500 via-brand-500 to-brand-700 text-white">
-      <div class="absolute inset-0 opacity-10" aria-hidden="true">
-        <svg class="w-full h-full" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#fff" stroke-width="0.5"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </div>
-      <div class="container-x relative py-20 md:py-28">
-        <div class="max-w-3xl">
-          <span class="inline-block px-3 py-1 rounded-full bg-white/15 text-xs font-medium mb-4">
-            🏭 {{ t('home.advantagesTitle') }}
-          </span>
-          <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
-            {{ t('home.heroTitle') }}
-          </h1>
-          <p class="mt-5 text-base md:text-lg text-gray-200 max-w-2xl">{{ t('home.heroSub') }}</p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <router-link to="/products" class="btn-accent !py-3 !px-6 text-sm">
-              🔍 {{ t('home.browseBtn') }}
-            </router-link>
-            <router-link to="/catalog" class="btn !py-3 !px-6 text-sm bg-white text-brand-500 hover:bg-gray-100">
-              📄 {{ t('home.downloadBtn') }}
-            </router-link>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Hero Carousel (rotating top products) -->
+    <HeroCarousel />
 
     <!-- Advantages -->
     <section class="container-x py-14 md:py-20">
@@ -48,7 +18,7 @@
       </div>
     </section>
 
-    <!-- Hot Products -->
+    <!-- Hot Products Grid -->
     <section class="bg-gray-50 py-14 md:py-20">
       <div class="container-x">
         <div class="flex items-end justify-between mb-8 flex-wrap gap-2">
@@ -85,6 +55,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import HeroCarousel from '@/components/HeroCarousel.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import { products } from '@/data/products.js'
 

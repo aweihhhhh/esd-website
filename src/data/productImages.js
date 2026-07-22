@@ -15,9 +15,12 @@ import { products } from './products.js'
 import { generateAllImages, toDataURI } from '@/utils/svgGenerator.js'
 
 // ============= 一次性给所有产品附加 images =============
+// 缓存 key 包含版本号, 升级 svgGenerator 后自动失效
+const IMAGE_VERSION = 'v2'
 const cache = new Map()
 function attachImages(product) {
-  if (cache.has(product.id)) return cache.get(product.id)
+  const cacheKey = `${IMAGE_VERSION}:${product.id}`
+  if (cache.has(cacheKey)) return cache.get(cacheKey)
   const list = generateAllImages(product).map(img => ({
     type: img.type,
     label: img.label,
@@ -25,7 +28,7 @@ function attachImages(product) {
     dataUri: toDataURI(img.svg),
     svg: img.svg
   }))
-  cache.set(product.id, list)
+  cache.set(cacheKey, list)
   return list
 }
 

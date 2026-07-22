@@ -6,8 +6,13 @@
       The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
     </p>
     <div class="mt-6 flex items-center justify-center gap-3 flex-wrap">
-      <router-link to="/" class="btn-primary">← Back to Home</router-link>
-      <router-link to="/products" class="btn-outline">Browse Products</router-link>
+      <router-link to="/" class="btn-primary">← {{ t('common.home') }}</router-link>
+      <router-link to="/products" class="btn-outline">{{ t('nav.products') }}</router-link>
     </div>
   </div>
 </template>
+
+<script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+</script>
