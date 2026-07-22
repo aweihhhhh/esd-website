@@ -7,6 +7,9 @@ dist/
 dist-ssr/
 *.local
 
+# Auto-generated (run `npm run scan-images` to regenerate)
+src/generated/image-manifest.json
+
 # Logs
 logs
 *.log
@@ -34,3 +37,6 @@ desktop.ini
 .env
 .env.local
 .env.*.local
+
+# 真实产品照片 (可选: 提交到 Git 也行, 但通常很大不入仓)
+public/images/products/

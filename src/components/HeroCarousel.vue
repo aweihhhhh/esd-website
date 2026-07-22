@@ -6,7 +6,8 @@
          class="absolute inset-0 transition-opacity duration-700"
          :class="i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'">
       <div class="absolute inset-0">
-        <img :src="p.images[0].dataUri" :alt="p.model" class="w-full h-full object-cover" />
+        <img v-if="p.images[0]?.isReal" :src="p.images[0].url" :alt="p.model" class="w-full h-full object-cover" />
+        <div v-else-if="p.images[0]?.svg" v-html="p.images[0].svg" class="w-full h-full [&>svg]:w-full [&>svg]:h-full"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-brand-700/90 via-brand-500/75 to-brand-500/40"></div>
       </div>
       <div class="relative container-x h-full flex items-center">

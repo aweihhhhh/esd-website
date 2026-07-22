@@ -10,24 +10,43 @@
 
     <!-- ============== Top section ============== -->
     <div class="mt-4 grid gap-6 md:grid-cols-2">
-      <!-- Image gallery: 5 SVG views -->
+      <!-- Image gallery: 5 views (real photos preferred, SVG fallback) -->
       <div class="card p-6 flex flex-col">
-        <div class="aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 rounded-md overflow-hidden grid place-items-center">
-          <img v-if="product.images?.[activeImg]"
-               :src="product.images[activeImg].dataUri"
+        <div class="aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 rounded-md overflow-hidden relative grid place-items-center">
+          <!-- 真实图片 -->
+          <img v-if="product.images?.[activeImg]?.isReal"
+               :src="product.images[activeImg].url"
                :alt="`${product.model} - ${t('detail.imageType.' + product.images[activeImg].type)}`"
                class="w-full h-full object-contain" />
+          <!-- SVG 程序生成 -->
+          <div v-else-if="product.images?.[activeImg]?.svg"
+               v-html="product.images[activeImg].svg"
+               class="w-full h-full [&>svg]:w-full [&>svg]:h-full"></div>
+          <!-- REAL 角标 -->
+          <span v-if="product.images?.[activeImg]?.isReal"
+                class="absolute top-3 right-3 px-2 py-0.5 bg-green-500 text-white text-xs font-bold rounded shadow">
+            📷 REAL
+          </span>
         </div>
+        <!-- 5 缩略图 -->
         <div class="mt-3 grid grid-cols-5 gap-2">
           <button v-for="(img, i) in product.images" :key="img.type"
                   @click="activeImg = i"
-                  :class="['aspect-[4/3] rounded border-2 overflow-hidden transition',
+                  :class="['aspect-[4/3] rounded border-2 overflow-hidden transition relative',
                            activeImg === i ? 'border-brand-500 ring-1 ring-brand-300' : 'border-gray-200 hover:border-brand-300']">
-            <img :src="img.dataUri" :alt="t('detail.imageType.' + img.type)" class="w-full h-full object-contain bg-gray-50" />
+            <!-- 真实缩略图 -->
+            <img v-if="img.isReal" :src="img.url" :alt="img.label" class="w-full h-full object-cover bg-gray-50" />
+            <!-- SVG 缩略图 -->
+            <div v-else v-html="img.svg" class="w-full h-full [&>svg]:w-full [&>svg]:h-full bg-gray-50"></div>
+            <!-- 缩略图 REAL 标记 -->
+            <span v-if="img.isReal"
+                  class="absolute bottom-0.5 right-0.5 px-1 text-[8px] font-bold text-white bg-green-500 rounded-tl">R</span>
           </button>
         </div>
         <div class="mt-2 text-center text-xs text-gray-500">
-          {{ t('detail.imageType.' + (product.images?.[activeImg]?.type || 'topView')) }} ({{ activeImg + 1 }} / {{ product.images?.length }})
+          {{ t('detail.imageType.' + (product.images?.[activeImg]?.type || 'topView')) }}
+          ({{ activeImg + 1 }} / {{ product.images?.length }})
+          <span v-if="product.images?.[activeImg]?.isReal" class="ml-1 text-green-600 font-medium">📷 REAL PHOTO</span>
         </div>
       </div>
 
