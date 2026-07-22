@@ -5,6 +5,7 @@ import 'element-plus/dist/index.css'
 
 import App from './App.vue'
 import router from './router'
+import { i18n } from './locales'
 import './assets/main.css'
 
 // 全局错误捕获 - 把 JS 错误显示到页面上, 避免白屏看不到原因
@@ -63,5 +64,6 @@ app.config.errorHandler = (err, instance, info) => {
 }
 app.use(createPinia())
 app.use(router)
+app.use(i18n)
 app.use(ElementPlus)
 app.mount('#app')

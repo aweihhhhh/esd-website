@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { i18n } from '@/locales'
 
 /**
  * Router
@@ -7,21 +8,30 @@ import { createRouter, createWebHashHistory } from 'vue-router'
  */
 const routes = [
   { path: '/',              name: 'home',        component: () => import('@/views/HomeView.vue'),
-    meta: { title: 'ESD Protection Diode Wholesale | TVS Array Supplier' } },
+    meta: { titleKey: 'meta.title' } },
   { path: '/products',     name: 'products',    component: () => import('@/views/ProductsView.vue'),
-    meta: { title: 'All ESD Products | TVS Diode Catalog' } },
+    meta: { titleKey: 'products.title' } },
   { path: '/products/:id', name: 'product',     component: () => import('@/views/ProductDetailView.vue'),
-    meta: { title: 'Product Detail' } },
+    meta: { titleKey: 'meta.title' } },
   { path: '/inquiry',      name: 'inquiry',     component: () => import('@/views/InquiryView.vue'),
-    meta: { title: 'Send Inquiry | Get Quote' } },
+    meta: { titleKey: 'inquiry.title' } },
   { path: '/catalog',      name: 'catalog',     component: () => import('@/views/CatalogView.vue'),
-    meta: { title: 'Download Product Catalog PDF' } },
+    meta: { titleKey: 'catalog.title' } },
   { path: '/about',        name: 'about',       component: () => import('@/views/AboutView.vue'),
-    meta: { title: 'About Us | ESD Diode Factory' } },
+    meta: { titleKey: 'about.title' } },
   { path: '/contact',      name: 'contact',     component: () => import('@/views/ContactView.vue'),
-    meta: { title: 'Contact Us' } },
+    meta: { titleKey: 'contact.title' } },
+  // === 新增页面 (i18n + 后端对接) ===
+  { path: '/login',        name: 'login',       component: () => import('@/views/LoginView.vue'),
+    meta: { titleKey: 'auth.loginTitle' } },
+  { path: '/register',     name: 'register',    component: () => import('@/views/RegisterView.vue'),
+    meta: { titleKey: 'auth.registerTitle' } },
+  { path: '/account',      name: 'account',     component: () => import('@/views/AccountView.vue'),
+    meta: { titleKey: 'nav.account', requiresAuth: true } },
+  { path: '/admin',        name: 'admin',       component: () => import('@/views/AdminView.vue'),
+    meta: { titleKey: 'Admin', requiresAdmin: true } },
   { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import('@/views/NotFoundView.vue'),
-    meta: { title: '404 Not Found' } }
+    meta: { titleKey: 'common.error' } }
 ]
 
 const router = createRouter({
@@ -33,11 +43,26 @@ const router = createRouter({
   }
 })
 
-// SEO: update document.title on route change
+// SEO + 权限守卫
 router.afterEach((to) => {
-  if (to.meta?.title) {
-    document.title = to.meta.title
+  if (to.meta?.titleKey) {
+    document.title = i18n.global.t(to.meta.titleKey) + ' | ESD Diode Wholesale'
   }
+})
+
+router.beforeEach((to, _from, next) => {
+  // 权限检查
+  if (to.meta?.requiresAuth || to.meta?.requiresAdmin) {
+    const user = JSON.parse(localStorage.getItem('user') || 'null')
+    const token = localStorage.getItem('token')
+    if (!token || !user) {
+      return next({ path: '/login', query: { redirect: to.fullPath } })
+    }
+    if (to.meta.requiresAdmin && !['staff', 'admin'].includes(user.role)) {
+      return next({ path: '/' })
+    }
+  }
+  next()
 })
 
 export default router

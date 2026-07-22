@@ -9,23 +9,21 @@
         </div>
         <div class="flex items-center gap-3">
           <span class="hidden sm:inline">Mon - Sat  9:00 - 18:00 (GMT+8)</span>
-          <a href="#/" class="hover:underline">EN</a>
+          <LangSwitcher />
         </div>
       </div>
     </div>
 
     <!-- Main navigation bar -->
     <div class="container-x flex items-center justify-between h-16">
-      <!-- Logo -->
       <router-link to="/" class="flex items-center gap-2 group">
         <div class="w-9 h-9 rounded-md bg-brand-500 grid place-items-center text-white font-bold tracking-wide">ESD</div>
         <div class="leading-tight">
-          <div class="text-base font-bold text-brand-500 group-hover:text-brand-600">ESD Diode Wholesale</div>
+          <div class="text-base font-bold text-brand-500 group-hover:text-brand-600">{{ t('meta.title') }}</div>
           <div class="text-[10px] text-gray-500 -mt-0.5">Factory Direct • Global B2B</div>
         </div>
       </router-link>
 
-      <!-- Desktop menu -->
       <nav class="hidden lg:flex items-center gap-1">
         <router-link v-for="m in menus" :key="m.path" :to="m.path"
                      class="px-3 py-2 rounded text-sm font-medium text-gray-700 hover:text-brand-500 hover:bg-brand-50 transition"
@@ -34,10 +32,17 @@
         </router-link>
       </nav>
 
-      <!-- CTA + mobile toggle -->
       <div class="flex items-center gap-2">
+        <router-link v-if="!userStore.isLoggedIn" to="/login" class="hidden sm:inline-flex btn-outline !py-2 !px-4 text-xs">
+          {{ t('nav.login') }}
+        </router-link>
+        <div v-else class="hidden sm:flex items-center gap-2">
+          <router-link to="/account" class="text-sm text-gray-700 hover:text-brand-500 flex items-center gap-1">
+            <span>👤</span><span class="hidden md:inline">{{ userStore.user?.fullName || t('nav.account') }}</span>
+          </router-link>
+        </div>
         <router-link to="/inquiry" class="hidden sm:inline-flex btn-accent !py-2 !px-4 text-xs">
-          ⚡ Get a Quote
+          ⚡ {{ t('nav.inquiry') }}
         </router-link>
         <button class="lg:hidden p-2 rounded hover:bg-gray-100" @click="open = !open" aria-label="menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -59,7 +64,15 @@
                        @click="open = false">
             {{ m.label }}
           </router-link>
-          <router-link to="/inquiry" class="mt-2 btn-accent text-sm" @click="open = false">⚡ Get a Quote</router-link>
+          <router-link v-if="!userStore.isLoggedIn" to="/login" class="mt-2 btn-outline text-sm" @click="open = false">
+            {{ t('nav.login') }}
+          </router-link>
+          <router-link v-else to="/account" class="mt-2 btn-outline text-sm" @click="open = false">
+            {{ t('nav.account') }}
+          </router-link>
+          <router-link to="/inquiry" class="mt-2 btn-accent text-sm" @click="open = false">
+            ⚡ {{ t('nav.inquiry') }}
+          </router-link>
         </div>
       </div>
     </transition>
@@ -67,17 +80,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import LangSwitcher from './LangSwitcher.vue'
+import { useUserStore } from '@/store/user.js'
 
+const { t } = useI18n()
+const userStore = useUserStore()
 const open = ref(false)
 
-const menus = [
-  { path: '/',         label: 'Home' },
-  { path: '/products', label: 'Products' },
-  { path: '/catalog',  label: 'Catalog' },
-  { path: '/about',    label: 'About Us' },
-  { path: '/contact',  label: 'Contact' }
-]
+const menus = computed(() => [
+  { path: '/',         label: t('nav.home') },
+  { path: '/products', label: t('nav.products') },
+  { path: '/catalog',  label: t('nav.catalog') },
+  { path: '/about',    label: t('nav.about') },
+  { path: '/contact',  label: t('nav.contact') }
+])
 </script>
 
 <style scoped>
