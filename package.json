@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "scan-images": "node scripts/scan-images.js"
+    "scan-images": "node scripts/scan-images.js",
+    "scrape-images": "node scripts/scrape-images.js",
+    "process-images": "node scripts/process-images.js"
   },
   "dependencies": {
     "vue": "^3.4.21",
@@ -16,7 +18,8 @@
     "element-plus": "^2.7.0",
     "@element-plus/icons-vue": "^2.3.1",
     "vue-i18n": "^9.13.1",
-    "axios": "^1.6.8"
+    "axios": "^1.6.8",
+    "sharp": "^0.33.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

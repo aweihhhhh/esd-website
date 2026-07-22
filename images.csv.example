@@ -1,0 +1,28 @@
+sku,slot,url
+# === 批量图片导入模板 ===
+# 列说明:
+#   sku    - 产品 SKU, 格式 ESD-{PACKAGE}-{MODEL} 大写 (例: ESD-SOD323-SD05)
+#   slot   - 01-top / 02-pinout / 03-circuit / 04-package / 05-spec
+#   url    - 图片直链 (jpg/png/webp 均可)
+#
+# 使用方法:
+#   1. 复制本文件为 images.csv
+#   2. 填入 sku, slot, url 三列
+#   3. 保存后运行: npm run scrape-images
+#
+# 获取 URL 的方法:
+#   - 在供应商网站打开产品详情页, 右键点击图片 → "复制图片地址"
+#   - 或打开 DevTools → Network → Img → 复制 .jpg/.png URL
+#   - 或上传到图床 (imgur.com / sm.ms) 后用链接
+
+# === 示例 (注意: 实际 URL 请替换为真实图片) ===
+
+# ESD-SOD323-SD05,01-top,https://example.com/photos/sd05-top.jpg
+# ESD-SOD323-SD05,02-pinout,https://example.com/photos/sd05-pinout.jpg
+# ESD-SOD323-SD05,03-circuit,https://example.com/photos/sd05-app-board.jpg
+# ESD-SOD323-SD05,04-package,https://example.com/photos/sd05-reel.jpg
+# ESD-SOD323-SD05,05-spec,https://example.com/photos/sd05-spec.jpg
+
+# ESD-SOD323-GBLC05C,01-top,https://example.com/photos/gblc05c-top.jpg
+# ESD-SOD323-GBLC05C,02-pinout,https://example.com/photos/gblc05c-marking.jpg
+# ... 等等
