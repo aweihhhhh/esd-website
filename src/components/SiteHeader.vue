@@ -8,7 +8,7 @@
           <span class="hidden md:inline">📱 +86 138 0000 0000</span>
         </div>
         <div class="flex items-center gap-3">
-          <span class="hidden sm:inline">Mon - Sat  9:00 - 18:00 (GMT+8)</span>
+          <span class="hidden sm:inline">{{ t('header.hours') }}</span>
           <LangSwitcher />
         </div>
       </div>
@@ -20,7 +20,7 @@
         <div class="w-9 h-9 rounded-md bg-brand-500 grid place-items-center text-white font-bold tracking-wide">ESD</div>
         <div class="leading-tight">
           <div class="text-base font-bold text-brand-500 group-hover:text-brand-600">{{ t('meta.title') }}</div>
-          <div class="text-[10px] text-gray-500 -mt-0.5">Factory Direct • Global B2B</div>
+          <div class="text-[10px] text-gray-500 -mt-0.5">{{ t('header.tagline') }}</div>
         </div>
       </router-link>
 

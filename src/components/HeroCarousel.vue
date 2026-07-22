@@ -32,9 +32,9 @@
             </router-link>
           </div>
           <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-200">
-            <span v-if="p.tags?.includes('lowCap')" class="px-2 py-0.5 bg-white/20 rounded">Low Cap</span>
-            <span v-if="p.tags?.includes('highSurge')" class="px-2 py-0.5 bg-white/20 rounded">High Surge</span>
-            <span v-if="p.tags?.includes('array')" class="px-2 py-0.5 bg-white/20 rounded">Array</span>
+            <span v-if="p.tags?.includes('lowCap')" class="px-2 py-0.5 bg-white/20 rounded">{{ t('product.lowCap') }}</span>
+            <span v-if="p.tags?.includes('highSurge')" class="px-2 py-0.5 bg-white/20 rounded">{{ t('product.highSurge') }}</span>
+            <span v-if="p.tags?.includes('array')" class="px-2 py-0.5 bg-white/20 rounded">{{ t('product.array') }}</span>
             <span class="px-2 py-0.5 bg-white/20 rounded">{{ p.packageQty }}</span>
           </div>
         </div>
@@ -70,7 +70,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { products } from '@/data/products.js'
 
-const { t } = useI18n()
+const { t, tm } = useI18n()
 
 /**
  * 智能排序: 按热度 (viewCount + inquiryCount × 5) 降序
@@ -117,9 +117,8 @@ onUnmounted(stop)
 
 const rankLabel = (p) => {
   const r = current.value + 1
-  if (r === 1) return '#1 HOT SELLER · Top Rated'
-  if (r === 2) return '#2 BEST CHOICE · Trending'
-  if (r === 3) return '#3 POPULAR · High Inquiry'
-  return `#${r} FEATURED`
+  const ranks = tm('hero.rank') || []
+  if (r >= 1 && r <= ranks.length) return ranks[r - 1]
+  return t('hero.rankFeatured', { n: r })
 }
 </script>

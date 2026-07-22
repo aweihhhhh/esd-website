@@ -217,5 +217,92 @@ export default {
     tempRange: '-55°C ~ +150°C',
     reflow: '260°C / 10s',
     quoteByEmail: 'Ou envie e-mail: sales@esd-diode.com'
+  },
+  footer: {
+    brand: 'ESD Diode Atacado',
+    desc: 'Fabricante profissional de diodos de proteção ESD e atacadista de arrays TVS. Fornecimento direto da fábrica com serviço B2B global há mais de 12 anos.',
+    quickLinks: 'Links Rápidos',
+    allProducts: 'Todos os Produtos',
+    downloadCatalog: 'Baixar Catálogo',
+    sendInquiry: 'Enviar Consulta',
+    aboutUs: 'Sobre Nós',
+    popularPackages: 'Pacotes Populares',
+    packageItem: 'Diodo ESD {pkg}',
+    contact: 'Contato',
+    address: 'Edifício 7, Parque Industrial Hi-Tech, Shenzhen, China',
+    phone: '+86 138 0000 0000 (WhatsApp)',
+    copyright: '© {year} ESD Diode Atacado. Todos os direitos reservados.',
+    privacy: 'Política de Privacidade',
+    terms: 'Termos de Serviço',
+    sitemap: 'Mapa do Site'
+  },
+  header: {
+    hours: 'Seg - Sáb  9:00 - 18:00 (GMT+8)',
+    tagline: 'Direto da Fábrica • B2B Global'
+  },
+  floating: {
+    whatsapp: 'WhatsApp',
+    email: 'E-mail',
+    backToTop: 'Topo'
+  },
+  card: {
+    images: '{n} imagens',
+    details: 'Detalhes',
+    inquire: 'Consultar'
+  },
+  hours: {
+    weekday: 'Seg - Sáb 9:00 - 18:00 (GMT+8)'
+  },
+  account: {
+    signInPrompt: 'Por favor, entre',
+    signInPromptDesc: 'Você precisa fazer login para ver sua conta.',
+    signIn: 'Entrar',
+    dashboard: '📊 Painel',
+    myInquiries: '📩 Minhas Consultas',
+    myOrders: '📦 Meus Pedidos',
+    myFavorites: '❤️ Meus Favoritos',
+    profile: 'Perfil',
+    noInquiries: 'Nenhuma consulta ainda',
+    noOrders: 'Nenhum pedido ainda',
+    noFavorites: 'Nenhum favorito ainda',
+    inquiryNo: 'Nº Consulta',
+    date: 'Data',
+    items: 'Itens',
+    status: 'Status',
+    view: 'Ver',
+    pcs: 'pcs',
+    orderNo: 'Nº Pedido'
+  },
+  hero: {
+    rank: ['#1 MAIS VENDIDO · Top Rated', '#2 MELHOR ESCOLHA · Trending', '#3 POPULAR · Mais Procurado'],
+    rankFeatured: `#{n} DESTAQUE`
+  },
+  admin: {
+    title: 'Painel Admin',
+    accessDenied: 'Acesso Negado',
+    accessDeniedDesc: 'Apenas staff / admin.',
+    statsUsers: 'Usuários',
+    statsInquiries: 'Consultas',
+    statsProducts: 'Produtos',
+    statsRevenue: 'Receita (USD)',
+    tabsInquiries: 'Consultas',
+    tabsUsers: 'Usuários',
+    thNo: 'Nº',
+    thCompany: 'Empresa',
+    thContact: 'Contato',
+    thQty: 'Qtd',
+    thStatus: 'Status',
+    thDate: 'Data',
+    thActions: 'Ações',
+    thEmail: 'E-mail',
+    thName: 'Nome',
+    thRole: 'Papel',
+    thLang: 'Idioma',
+    thJoined: 'Cadastro',
+    view: 'Ver'
+  },
+  notFound: {
+    title: 'Página Não Encontrada',
+    desc: 'A página que você procura pode ter sido removida, renomeada ou está temporariamente indisponível.'
   }
 }

@@ -18,7 +18,7 @@
       <div class="aspect-[16/6] bg-gradient-to-br from-brand-100 to-gray-200 grid place-items-center text-brand-500">
         <div class="text-center">
           <div class="text-4xl">📍</div>
-          <div class="mt-2 font-semibold">Shenzhen Hi-Tech Industrial Park, China</div>
+          <div class="mt-2 font-semibold">{{ t('footer.address') }}</div>
           <div class="text-xs text-gray-500">Building 7, Guangming District, Shenzhen 518107</div>
         </div>
       </div>
@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import { ElMessage } from 'element-plus'
@@ -48,18 +48,18 @@ import { ElMessage } from 'element-plus'
 const { t } = useI18n()
 const form = reactive({ name: '', email: '', subject: '', message: '' })
 
-const contacts = [
-  { icon: '📧', title: 'Email',    value: 'sales@esd-diode.com\nsupport@esd-diode.com', link: 'mailto:sales@esd-diode.com', cta: 'Send Email' },
-  { icon: '📱', title: 'Phone / WhatsApp', value: '+86 138 0000 0000\nMon-Sat 9:00-18:00 (GMT+8)', link: 'https://wa.me/8613800000000', cta: 'WhatsApp Chat' },
+const contacts = computed(() => [
+  { icon: '📧', title: 'Email',    value: 'sales@esd-diode.com\nsupport@esd-diode.com', link: 'mailto:sales@esd-diode.com', cta: t('contact.send') || 'Send Email' },
+  { icon: '📱', title: 'Phone / WhatsApp', value: '+86 138 0000 0000\n' + t('header.hours'), link: 'https://wa.me/8613800000000', cta: 'WhatsApp Chat' },
   { icon: '🏢', title: 'Factory Address', value: 'Building 7, Hi-Tech Industrial Park\nGuangming District, Shenzhen 518107, China', link: null }
-]
+])
 
 const send = () => {
   const record = { ...form, sentAt: new Date().toISOString() }
   const list = JSON.parse(localStorage.getItem('messages') || '[]')
   list.unshift(record)
   localStorage.setItem('messages', JSON.stringify(list))
-  ElMessage.success('Message sent! We will reply within 12 hours.')
+  ElMessage.success(t('contact.send') + ' ✓')
   Object.assign(form, { name: '', email: '', subject: '', message: '' })
 }
 </script>

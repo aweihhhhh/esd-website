@@ -44,7 +44,7 @@
         <div class="flex flex-wrap gap-3">
           <router-link to="/inquiry" class="btn-accent !py-3 !px-6 text-sm">📩 {{ t('inquiry.submit') }}</router-link>
           <a href="https://wa.me/8613800000000" target="_blank" class="btn !py-3 !px-6 text-sm bg-white text-brand-500 hover:bg-gray-100">
-            💬 WhatsApp
+            💬 {{ t('floating.whatsapp') }}
           </a>
         </div>
       </div>

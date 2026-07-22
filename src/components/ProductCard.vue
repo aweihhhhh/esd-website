@@ -8,16 +8,16 @@
            class="w-full h-full object-contain" />
       <!-- Badges -->
       <div class="absolute top-2 left-2 flex flex-col gap-1">
-        <span v-if="product.tags?.includes('lowCap')"  class="pill-blue">Low Cap</span>
-        <span v-if="product.tags?.includes('highSurge')" class="pill-amber">High Surge</span>
-        <span v-if="product.tags?.includes('array')"    class="pill-purple">Array</span>
+        <span v-if="product.tags?.includes('lowCap')"  class="pill-blue">{{ t('product.lowCap') }}</span>
+        <span v-if="product.tags?.includes('highSurge')" class="pill-amber">{{ t('product.highSurge') }}</span>
+        <span v-if="product.tags?.includes('array')"    class="pill-purple">{{ t('product.array') }}</span>
       </div>
       <div class="absolute top-2 right-2">
         <input v-if="selectable" type="checkbox" :checked="selected" @change="$emit('toggle', product.id)"
                class="w-4 h-4 accent-brand-500 cursor-pointer" :aria-label="`select ${product.model}`" />
       </div>
       <div class="absolute bottom-1 right-2 text-[10px] text-gray-400 bg-white/70 px-1 rounded">
-        {{ product.images?.length || 0 }} images
+        {{ t('card.images', { n: product.images?.length || 0 }) }}
       </div>
     </div>
 
@@ -26,7 +26,7 @@
       <div class="flex items-center justify-between mb-1">
         <span class="text-[10px] uppercase tracking-wider text-gray-400">{{ product.package }}</span>
         <span :class="product.direction === 'Unidirectional' ? 'pill-green' : 'pill-purple'">
-          {{ product.direction === 'Unidirectional' ? 'Uni' : 'Bi' }}
+          {{ product.direction === 'Unidirectional' ? t('product.uni') : t('product.bi') }}
         </span>
       </div>
 
@@ -36,16 +36,16 @@
       </router-link>
 
       <ul class="mt-2 text-xs text-gray-600 space-y-0.5">
-        <li class="flex justify-between"><span>VRWM</span><span class="font-medium text-gray-800">{{ product.vrwm }}</span></li>
-        <li class="flex justify-between"><span>Cj (TYP)</span><span class="font-medium text-gray-800">{{ product.cj }}</span></li>
-        <li class="flex justify-between"><span>IPPM</span><span class="font-medium text-gray-800">{{ product.ippm }}</span></li>
-        <li class="flex justify-between"><span>Package</span><span class="font-medium text-gray-800">{{ product.packageQty }}</span></li>
+        <li class="flex justify-between"><span>{{ t('product.vrwm') }}</span><span class="font-medium text-gray-800">{{ product.vrwm }}</span></li>
+        <li class="flex justify-between"><span>{{ t('product.cj') }}</span><span class="font-medium text-gray-800">{{ product.cj }}</span></li>
+        <li class="flex justify-between"><span>{{ t('product.ippm') }}</span><span class="font-medium text-gray-800">{{ product.ippm }}</span></li>
+        <li class="flex justify-between"><span>{{ t('product.packageQty') }}</span><span class="font-medium text-gray-800">{{ product.packageQty }}</span></li>
       </ul>
 
       <div class="mt-3 flex items-center gap-2">
-        <router-link :to="`/products/${product.id}`" class="btn-outline flex-1 !py-1.5 !text-xs">Details</router-link>
+        <router-link :to="`/products/${product.id}`" class="btn-outline flex-1 !py-1.5 !text-xs">{{ t('card.details') }}</router-link>
         <router-link :to="{ path: '/inquiry', query: { model: product.model } }" class="btn-primary flex-1 !py-1.5 !text-xs">
-          Inquire
+          {{ t('card.inquire') }}
         </router-link>
       </div>
     </div>
@@ -53,6 +53,9 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 defineProps({
   product: { type: Object, required: true },
   selectable: { type: Boolean, default: false },

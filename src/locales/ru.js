@@ -217,5 +217,92 @@ export default {
     tempRange: '-55°C ~ +150°C',
     reflow: '260°C / 10с',
     quoteByEmail: 'Или напишите: sales@esd-diode.com'
+  },
+  footer: {
+    brand: 'ЭСР диоды оптом',
+    desc: 'Профессиональный производитель защитных ЭСР диодов и TVS массивов. Прямые поставки с завода с глобальным B2B сервисом более 12 лет.',
+    quickLinks: 'Быстрые ссылки',
+    allProducts: 'Все продукты',
+    downloadCatalog: 'Скачать каталог',
+    sendInquiry: 'Отправить запрос',
+    aboutUs: 'О нас',
+    popularPackages: 'Популярные корпуса',
+    packageItem: 'ЭСР диод {pkg}',
+    contact: 'Контакты',
+    address: 'Здание 7, Хай-Тек парк, Шэньчжэнь, Китай',
+    phone: '+86 138 0000 0000 (WhatsApp)',
+    copyright: '© {year} ЭСР диоды оптом. Все права защищены.',
+    privacy: 'Политика конфиденциальности',
+    terms: 'Условия использования',
+    sitemap: 'Карта сайта'
+  },
+  header: {
+    hours: 'Пн - Сб  9:00 - 18:00 (GMT+8)',
+    tagline: 'Напрямую с завода • Глобальный B2B'
+  },
+  floating: {
+    whatsapp: 'WhatsApp',
+    email: 'Email',
+    backToTop: 'Наверх'
+  },
+  card: {
+    images: '{n} изображений',
+    details: 'Подробнее',
+    inquire: 'Запрос'
+  },
+  hours: {
+    weekday: 'Пн - Сб 9:00 - 18:00 (GMT+8)'
+  },
+  account: {
+    signInPrompt: 'Пожалуйста, войдите',
+    signInPromptDesc: 'Войдите, чтобы увидеть свой аккаунт.',
+    signIn: 'Войти',
+    dashboard: '📊 Панель',
+    myInquiries: '📩 Мои запросы',
+    myOrders: '📦 Мои заказы',
+    myFavorites: '❤️ Избранное',
+    profile: 'Профиль',
+    noInquiries: 'Запросов пока нет',
+    noOrders: 'Заказов пока нет',
+    noFavorites: 'В избранном пусто',
+    inquiryNo: 'Номер запроса',
+    date: 'Дата',
+    items: 'Позиции',
+    status: 'Статус',
+    view: 'Смотреть',
+    pcs: 'шт',
+    orderNo: 'Номер заказа'
+  },
+  hero: {
+    rank: ['#1 БЕСТСЕЛЛЕР · Топ оценка', '#2 ЛУЧШИЙ ВЫБОР · В тренде', '#3 ПОПУЛЯРНЫЙ · Много запросов'],
+    rankFeatured: `№{n} РЕКОМЕНДУЕМ`
+  },
+  admin: {
+    title: 'Панель администратора',
+    accessDenied: 'Доступ запрещён',
+    accessDeniedDesc: 'Только для сотрудников / администраторов',
+    statsUsers: 'Пользователи',
+    statsInquiries: 'Запросы',
+    statsProducts: 'Продукты',
+    statsRevenue: 'Выручка (USD)',
+    tabsInquiries: 'Запросы',
+    tabsUsers: 'Пользователи',
+    thNo: '№',
+    thCompany: 'Компания',
+    thContact: 'Контакт',
+    thQty: 'Кол-во',
+    thStatus: 'Статус',
+    thDate: 'Дата',
+    thActions: 'Действия',
+    thEmail: 'Email',
+    thName: 'Имя',
+    thRole: 'Роль',
+    thLang: 'Язык',
+    thJoined: 'Регистрация',
+    view: 'Смотреть'
+  },
+  notFound: {
+    title: 'Страница не найдена',
+    desc: 'Запрашиваемая страница могла быть удалена, переименована или временно недоступна.'
   }
 }

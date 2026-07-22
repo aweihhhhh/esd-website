@@ -84,7 +84,7 @@
             <li>📧 sales@esd-diode.com</li>
             <li>📱 +86 138 0000 0000</li>
             <li>💬 <a href="https://wa.me/8613800000000" target="_blank" class="text-accent hover:underline">WhatsApp</a></li>
-            <li>🕘 Mon - Sat 9:00 - 18:00 (GMT+8)</li>
+            <li>🕘 {{ t('header.hours') }}</li>
           </ul>
         </div>
       </aside>
@@ -151,7 +151,7 @@ const submitForm = async () => {
     await ElMessageBox.alert(
       t('inquiry.submitted', { name: form.contactName, email: form.contactEmail, ref: record.id }),
       '✓ ' + t('auth.success'),
-      { confirmButtonText: 'OK', type: 'success' }
+      { confirmButtonText: t('common.confirm'), type: 'success' }
     )
     Object.assign(form, { companyName: '', contactName: '', contactEmail: '', contactPhone: '', totalQty: '', industry: '', models: '', notes: '' })
   } catch (e) {

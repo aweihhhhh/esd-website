@@ -217,5 +217,92 @@ export default {
     tempRange: '-55°C ~ +150°C',
     reflow: '260°C / 10s',
     quoteByEmail: 'Or email us: sales@esd-diode.com'
+  },
+  footer: {
+    brand: 'ESD Diode Wholesale',
+    desc: 'Professional ESD protection diode and TVS array manufacturer & wholesaler. Factory direct supply with global B2B service for over 12 years.',
+    quickLinks: 'Quick Links',
+    allProducts: 'All Products',
+    downloadCatalog: 'Download Catalog',
+    sendInquiry: 'Send Inquiry',
+    aboutUs: 'About Us',
+    popularPackages: 'Popular Packages',
+    packageItem: '{pkg} ESD Diode',
+    contact: 'Contact',
+    address: 'Building 7, Hi-Tech Industrial Park, Shenzhen, China',
+    phone: '+86 138 0000 0000 (WhatsApp)',
+    copyright: '© {year} ESD Diode Wholesale. All Rights Reserved.',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Service',
+    sitemap: 'Sitemap'
+  },
+  header: {
+    hours: 'Mon - Sat  9:00 - 18:00 (GMT+8)',
+    tagline: 'Factory Direct • Global B2B'
+  },
+  floating: {
+    whatsapp: 'WhatsApp Us',
+    email: 'Email Us',
+    backToTop: 'Back to top'
+  },
+  card: {
+    images: '{n} images',
+    details: 'Details',
+    inquire: 'Inquire'
+  },
+  hours: {
+    weekday: 'Mon - Sat 9:00 - 18:00 (GMT+8)'
+  },
+  account: {
+    signInPrompt: 'Please sign in',
+    signInPromptDesc: 'You need to login to view your account.',
+    signIn: 'Sign In',
+    dashboard: '📊 Dashboard',
+    myInquiries: '📩 My Inquiries',
+    myOrders: '📦 My Orders',
+    myFavorites: '❤️ My Favorites',
+    profile: 'Profile',
+    noInquiries: 'No inquiries yet',
+    noOrders: 'No orders yet',
+    noFavorites: 'No favorites yet',
+    inquiryNo: 'Inquiry #',
+    date: 'Date',
+    items: 'Items',
+    status: 'Status',
+    view: 'View',
+    pcs: 'pcs',
+    orderNo: 'Order #'
+  },
+  hero: {
+    rank: ['#1 HOT SELLER · Top Rated', '#2 BEST CHOICE · Trending', '#3 POPULAR · High Inquiry'],
+    rankFeatured: `#{n} FEATURED`
+  },
+  admin: {
+    title: 'Admin Dashboard',
+    accessDenied: 'Access Denied',
+    accessDeniedDesc: 'Staff / Admin only.',
+    statsUsers: 'Users',
+    statsInquiries: 'Inquiries',
+    statsProducts: 'Products',
+    statsRevenue: 'Revenue (USD)',
+    tabsInquiries: 'Inquiries',
+    tabsUsers: 'Users',
+    thNo: 'No.',
+    thCompany: 'Company',
+    thContact: 'Contact',
+    thQty: 'Qty',
+    thStatus: 'Status',
+    thDate: 'Date',
+    thActions: 'Actions',
+    thEmail: 'Email',
+    thName: 'Name',
+    thRole: 'Role',
+    thLang: 'Lang',
+    thJoined: 'Joined',
+    view: 'View'
+  },
+  notFound: {
+    title: 'Page Not Found',
+    desc: 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.'
   }
 }

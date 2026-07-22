@@ -217,5 +217,92 @@ export default {
     tempRange: '-55°C ~ +150°C',
     reflow: '260°C / 10s',
     quoteByEmail: '或邮件联系我们: sales@esd-diode.com'
+  },
+  footer: {
+    brand: 'ESD 二极管批发',
+    desc: '专业 ESD 保护二极管和 TVS 阵列制造商和批发商。工厂直销, 12 年以上全球 B2B 服务。',
+    quickLinks: '快捷链接',
+    allProducts: '所有产品',
+    downloadCatalog: '下载目录',
+    sendInquiry: '在线询价',
+    aboutUs: '关于我们',
+    popularPackages: '热门封装',
+    packageItem: '{pkg} ESD 二极管',
+    contact: '联系我们',
+    address: '深圳光明区高新区高新南一道 7 号',
+    phone: '+86 138 0000 0000 (WhatsApp)',
+    copyright: '© {year} ESD 二极管批发 版权所有',
+    privacy: '隐私政策',
+    terms: '服务条款',
+    sitemap: '网站地图'
+  },
+  header: {
+    hours: '周一至周六 9:00 - 18:00 (GMT+8)',
+    tagline: '工厂直销 · 全球 B2B'
+  },
+  floating: {
+    whatsapp: 'WhatsApp 咨询',
+    email: '邮件咨询',
+    backToTop: '回到顶部'
+  },
+  card: {
+    images: '{n} 张图',
+    details: '详情',
+    inquire: '询价'
+  },
+  hours: {
+    weekday: '周一至周六 9:00 - 18:00 (GMT+8)'
+  },
+  account: {
+    signInPrompt: '请登录',
+    signInPromptDesc: '查看账户信息需要先登录。',
+    signIn: '登录',
+    dashboard: '📊 控制台',
+    myInquiries: '📩 我的询价',
+    myOrders: '📦 我的订单',
+    myFavorites: '❤️ 我的收藏',
+    profile: '个人资料',
+    noInquiries: '暂无询价',
+    noOrders: '暂无订单',
+    noFavorites: '暂无收藏',
+    inquiryNo: '询价单号',
+    date: '日期',
+    items: '明细',
+    status: '状态',
+    view: '查看',
+    pcs: '件',
+    orderNo: '订单号'
+  },
+  hero: {
+    rank: ['#1 热销 · 评分最高', '#2 推荐 · 趋势上升', '#3 热门 · 询盘多'],
+    rankFeatured: `第{n}名 推荐`
+  },
+  admin: {
+    title: '管理后台',
+    accessDenied: '访问被拒绝',
+    accessDeniedDesc: '仅限员工 / 管理员',
+    statsUsers: '用户',
+    statsInquiries: '询价',
+    statsProducts: '产品',
+    statsRevenue: '收入 (USD)',
+    tabsInquiries: '询价',
+    tabsUsers: '用户',
+    thNo: '单号',
+    thCompany: '公司',
+    thContact: '联系人',
+    thQty: '数量',
+    thStatus: '状态',
+    thDate: '日期',
+    thActions: '操作',
+    thEmail: '邮箱',
+    thName: '姓名',
+    thRole: '角色',
+    thLang: '语言',
+    thJoined: '注册时间',
+    view: '查看'
+  },
+  notFound: {
+    title: '页面不存在',
+    desc: '您访问的页面可能已被移除、更名或暂时不可用。'
   }
 }

@@ -4,9 +4,9 @@
 
     <div v-if="!userStore.isLoggedIn" class="mt-10 card p-10 text-center">
       <div class="text-5xl">🔒</div>
-      <h2 class="mt-3 text-xl font-bold text-brand-500">Please sign in</h2>
-      <p class="text-gray-500 mt-1">You need to login to view your account.</p>
-      <router-link to="/login" class="mt-4 inline-block btn-primary">Sign In</router-link>
+      <h2 class="mt-3 text-xl font-bold text-brand-500">{{ t('account.signInPrompt') }}</h2>
+      <p class="text-gray-500 mt-1">{{ t('account.signInPromptDesc') }}</p>
+      <router-link to="/login" class="mt-4 inline-block btn-primary">{{ t('account.signIn') }}</router-link>
     </div>
 
     <div v-else class="mt-4 grid gap-6 md:grid-cols-[240px_1fr]">
@@ -41,20 +41,20 @@
           <h1 class="text-2xl font-bold text-brand-500 mb-4">{{ t('nav.account') }}</h1>
           <div class="grid gap-4 grid-cols-1 sm:grid-cols-3">
             <div class="card p-5">
-              <div class="text-xs text-gray-500">Inquiries</div>
+              <div class="text-xs text-gray-500">{{ t('account.myInquiries').replace('📩 ', '') }}</div>
               <div class="text-2xl font-bold text-brand-500 mt-1">{{ inquiries.length }}</div>
             </div>
             <div class="card p-5">
-              <div class="text-xs text-gray-500">Orders</div>
+              <div class="text-xs text-gray-500">{{ t('account.myOrders').replace('📦 ', '') }}</div>
               <div class="text-2xl font-bold text-brand-500 mt-1">{{ orders.length }}</div>
             </div>
             <div class="card p-5">
-              <div class="text-xs text-gray-500">Favorites</div>
+              <div class="text-xs text-gray-500">{{ t('account.myFavorites').replace('❤️ ', '') }}</div>
               <div class="text-2xl font-bold text-brand-500 mt-1">{{ favorites.length }}</div>
             </div>
           </div>
           <div class="mt-6 card p-5">
-            <h3 class="font-semibold text-brand-500 mb-2">Profile</h3>
+            <h3 class="font-semibold text-brand-500 mb-2">{{ t('account.profile') }}</h3>
             <dl class="text-sm grid grid-cols-2 gap-2">
               <div><dt class="text-gray-500">Name</dt><dd>{{ userStore.user?.fullName }}</dd></div>
               <div><dt class="text-gray-500">Email</dt><dd>{{ userStore.user?.email }}</dd></div>
@@ -66,16 +66,16 @@
 
         <!-- Inquiries -->
         <div v-else-if="active === 'inquiries'">
-          <h2 class="text-xl font-bold text-brand-500 mb-4">My Inquiries</h2>
+          <h2 class="text-xl font-bold text-brand-500 mb-4">{{ t('account.myInquiries') }}</h2>
           <div v-if="loading" class="text-center py-8 text-gray-500">{{ t('common.loading') }}</div>
-          <div v-else-if="!inquiries.length" class="card p-8 text-center text-gray-500">No inquiries yet</div>
+          <div v-else-if="!inquiries.length" class="card p-8 text-center text-gray-500">{{ t('account.noInquiries') }}</div>
           <table v-else class="w-full text-sm card overflow-hidden">
             <thead class="bg-gray-50 text-left">
               <tr>
-                <th class="px-3 py-2">Inquiry #</th>
-                <th class="px-3 py-2">Date</th>
-                <th class="px-3 py-2">Items</th>
-                <th class="px-3 py-2">Status</th>
+                <th class="px-3 py-2">{{ t('account.inquiryNo') }}</th>
+                <th class="px-3 py-2">{{ t('account.date') }}</th>
+                <th class="px-3 py-2">{{ t('account.items') }}</th>
+                <th class="px-3 py-2">{{ t('account.status') }}</th>
                 <th class="px-3 py-2"></th>
               </tr>
             </thead>
@@ -83,11 +83,11 @@
               <tr v-for="i in inquiries" :key="i.id" class="border-t border-gray-100">
                 <td class="px-3 py-2 font-mono text-xs">{{ i.inquiryNo }}</td>
                 <td class="px-3 py-2">{{ new Date(i.createdAt).toLocaleDateString() }}</td>
-                <td class="px-3 py-2">{{ i.items?.length || 0 }} items / {{ i.totalQty }} pcs</td>
+                <td class="px-3 py-2">{{ i.items?.length || 0 }} / {{ i.totalQty }} {{ t('account.pcs') }}</td>
                 <td class="px-3 py-2">
                   <span :class="['pill', statusClass(i.status)]">{{ i.status }}</span>
                 </td>
-                <td class="px-3 py-2"><a href="#" class="text-accent text-xs hover:underline">View</a></td>
+                <td class="px-3 py-2"><a href="#" class="text-accent text-xs hover:underline">{{ t('account.view') }}</a></td>
               </tr>
             </tbody>
           </table>
@@ -95,15 +95,15 @@
 
         <!-- Orders -->
         <div v-else-if="active === 'orders'">
-          <h2 class="text-xl font-bold text-brand-500 mb-4">My Orders</h2>
-          <div v-if="!orders.length" class="card p-8 text-center text-gray-500">No orders yet</div>
+          <h2 class="text-xl font-bold text-brand-500 mb-4">{{ t('account.myOrders') }}</h2>
+          <div v-if="!orders.length" class="card p-8 text-center text-gray-500">{{ t('account.noOrders') }}</div>
           <table v-else class="w-full text-sm card overflow-hidden">
             <thead class="bg-gray-50 text-left">
               <tr>
-                <th class="px-3 py-2">Order #</th>
-                <th class="px-3 py-2">Date</th>
+                <th class="px-3 py-2">{{ t('account.orderNo') }}</th>
+                <th class="px-3 py-2">{{ t('account.date') }}</th>
                 <th class="px-3 py-2">Total</th>
-                <th class="px-3 py-2">Status</th>
+                <th class="px-3 py-2">{{ t('account.status') }}</th>
               </tr>
             </thead>
             <tbody>
@@ -119,8 +119,8 @@
 
         <!-- Favorites -->
         <div v-else-if="active === 'favorites'">
-          <h2 class="text-xl font-bold text-brand-500 mb-4">My Favorites</h2>
-          <div v-if="!favorites.length" class="card p-8 text-center text-gray-500">No favorites yet</div>
+          <h2 class="text-xl font-bold text-brand-500 mb-4">{{ t('account.myFavorites') }}</h2>
+          <div v-if="!favorites.length" class="card p-8 text-center text-gray-500">{{ t('account.noFavorites') }}</div>
           <div v-else class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             <ProductCard v-for="p in favorites" :key="p.id" :product="p" />
           </div>
