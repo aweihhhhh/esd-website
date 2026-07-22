@@ -1,17 +1,11 @@
 <template>
   <div class="card-hover overflow-hidden flex flex-col">
-    <!-- Image placeholder -->
-    <div class="relative h-40 bg-gradient-to-br from-brand-50 to-gray-100 flex items-center justify-center">
-      <!-- 图片占位区 - 后期替换为真实产品图：
-           <img :src="product.image" :alt="product.model" /> -->
-      <svg viewBox="0 0 100 60" class="w-28 h-16 text-brand-300">
-        <rect x="6"  y="18" width="32" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
-        <rect x="62" y="18" width="32" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="0" y1="30" x2="6"  y2="30" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="0" y1="30" x2="6"  y2="30" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="94" y1="30" x2="100" y2="30" stroke="currentColor" stroke-width="1.5"/>
-        <text x="50" y="34" text-anchor="middle" font-size="8" fill="currentColor">ESD</text>
-      </svg>
+    <!-- Image: 程序化生成的 SVG 示意图 (Top View) -->
+    <div class="relative h-40 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center overflow-hidden">
+      <img v-if="product.images?.[0]"
+           :src="product.images[0].dataUri"
+           :alt="`${product.model} Top View`"
+           class="w-full h-full object-contain" />
       <!-- Badges -->
       <div class="absolute top-2 left-2 flex flex-col gap-1">
         <span v-if="product.tags?.includes('lowCap')"  class="pill-blue">Low Cap</span>
@@ -21,6 +15,9 @@
       <div class="absolute top-2 right-2">
         <input v-if="selectable" type="checkbox" :checked="selected" @change="$emit('toggle', product.id)"
                class="w-4 h-4 accent-brand-500 cursor-pointer" :aria-label="`select ${product.model}`" />
+      </div>
+      <div class="absolute bottom-1 right-2 text-[10px] text-gray-400 bg-white/70 px-1 rounded">
+        {{ product.images?.length || 0 }} images
       </div>
     </div>
 

@@ -10,22 +10,26 @@
 
     <!-- ============== Top section ============== -->
     <div class="mt-4 grid gap-6 md:grid-cols-2">
-      <!-- Image / diagram -->
+      <!-- Image gallery: 5 SVG views -->
       <div class="card p-6 flex flex-col">
-        <div class="aspect-square bg-gradient-to-br from-brand-50 to-gray-100 rounded-md grid place-items-center">
-          <!-- 产品大图占位：<img :src="product.image" :alt="product.model" /> -->
-          <svg viewBox="0 0 200 200" class="w-40 h-40 text-brand-300">
-            <rect x="20"  y="60" width="60" height="80" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
-            <rect x="120" y="60" width="60" height="80" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
-            <line x1="0"  y1="100" x2="20"  y2="100" stroke="currentColor" stroke-width="2"/>
-            <line x1="180" y1="100" x2="200" y2="100" stroke="currentColor" stroke-width="2"/>
-            <text x="100" y="105" text-anchor="middle" font-size="14" fill="currentColor">{{ product.package }}</text>
-          </svg>
+        <div class="aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 rounded-md overflow-hidden grid place-items-center">
+          <img v-if="product.images?.[activeImg]"
+               :src="product.images[activeImg].dataUri"
+               :alt="`${product.model} - ${product.images[activeImg].label}`"
+               class="w-full h-full object-contain" />
         </div>
-        <div class="mt-3 grid grid-cols-4 gap-2">
-          <div v-for="i in 4" :key="i" class="aspect-square bg-gray-100 rounded-md grid place-items-center text-gray-400 text-xs">
-            IMG {{ i }}
-          </div>
+        <!-- Thumbnail strip: 5 views -->
+        <div class="mt-3 grid grid-cols-5 gap-2">
+          <button v-for="(img, i) in product.images" :key="img.type"
+                  @click="activeImg = i"
+                  :class="['aspect-[4/3] rounded border-2 overflow-hidden transition',
+                           activeImg === i ? 'border-brand-500 ring-1 ring-brand-300' : 'border-gray-200 hover:border-brand-300']">
+            <img :src="img.dataUri" :alt="img.label" class="w-full h-full object-contain bg-gray-50" />
+          </button>
+        </div>
+        <!-- Image label -->
+        <div class="mt-2 text-center text-xs text-gray-500">
+          {{ product.images?.[activeImg]?.label }} ({{ activeImg + 1 }} / {{ product.images?.length }})
         </div>
       </div>
 
@@ -131,7 +135,7 @@
 </template>
 
 <script setup>
-import { computed, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import ProductCard from '@/components/ProductCard.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
@@ -141,6 +145,10 @@ const route = useRoute()
 const product = computed(() => getProductById(route.params.id))
 const relatedByPackage = computed(() => getRelatedByPackage(route.params.id, 4))
 const relatedByVoltage = computed(() => getRelatedByVoltage(route.params.id, 4))
+
+// 当前展示的图片索引 (0-4)
+const activeImg = ref(0)
+watchEffect(() => { activeImg.value = 0 }) // 切换产品时重置
 
 // SEO: 动态 title & meta
 watchEffect(() => {
