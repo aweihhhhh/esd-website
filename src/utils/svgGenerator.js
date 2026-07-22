@@ -284,8 +284,8 @@ export function generateSpecCurve(product) {
     const t = i / 50
     // 电压从 VRWM 到 VBR 的指数曲线
     const v = product.cjValue > 1 ? 0.05 + Math.pow(t, 4) * 0.95 : 0.02 + Math.pow(t, 5) * 0.98
-    const i = Math.pow(t, 2.5)
-    pts.push([px + v * pw, py + ph - i * ph])
+    const cur = Math.pow(t, 2.5)          // ⚠️ 改名: 不能用 const i 跟外层 for 的 let i 冲突
+    pts.push([px + v * pw, py + ph - cur * ph])
   }
   const pathD = 'M ' + pts.map(p => p.join(' ')).join(' L ')
 
